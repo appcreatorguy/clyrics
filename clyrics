@@ -11,6 +11,7 @@
 # Contributors:
 #   https://github.com/genomorro - Edgar Uriel Domínguez Espinoza
 #   https://github.com/natezb    - Nate Bogdanowicz
+#   https://github.com/appcreatorguy - Manas Mengle
 
 # clyrics works by making a query on Google with the name of a given song,
 # which can also include the artist name. The search is restricted only to
@@ -310,7 +311,7 @@ sub playerctl_daemon {
 
     daemon_loop(
         sub {
-            my $info = `playerctl metadata --format '{{artist}}\n{{title}}\n{{status}}' &>/dev/stdout`;
+            my $info = `playerctl --player=spotify metadata --format '{{artist}}\n{{title}}\n{{status}}' &>/dev/stdout`;
             $? and die "[!] playerctl is not installed!\n";
 
             my ($artist, $title, $status) = split /\n/, $info;
